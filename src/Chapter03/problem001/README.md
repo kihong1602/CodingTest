@@ -1,13 +1,10 @@
 # Problem 001
 
----
 > BOJ 11720 숫자의 합
 > <br/>
 > [링크](https://www.acmicpc.net/problem/11720)
 
 ## 풀이
-
----
 
 숫자의 개수를 입력받고, 숫자를 String으로 입력받는다.
 <br/>
