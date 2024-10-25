@@ -1,4 +1,4 @@
-package Chapter03.problem012;
+package chapter03.problem012;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,16 +34,12 @@ public class Problem012 {
 
     for (int i = 0; i < array.length; i++) {
       while (!stack.isEmpty() && array[stack.peek()] < array[i]) {
-        // stack에 값이 존재하고, array[stack peek index]가 array[i] 보다 작다면 array[i]가 오큰수임
-        // result[stack pop index]에 array[i]
         result[stack.pop()] = array[i];
       }
-      // stack에 다음차례를 위해 index 저장
       stack.push(i);
     }
 
     while (!stack.isEmpty()) {
-      // 이전 반복문을 수행하도고 stack에 남아있는 index는 오큰수가 없음. 따라서 -1을 저장
       result[stack.pop()] = -1;
     }
 

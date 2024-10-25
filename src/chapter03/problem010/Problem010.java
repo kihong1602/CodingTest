@@ -1,4 +1,4 @@
-package Chapter03.problem010;
+package chapter03.problem010;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
