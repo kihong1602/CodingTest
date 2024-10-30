@@ -23,7 +23,7 @@ class SortTest {
 
   @BeforeEach
   void init() {
-    List<Integer> list = IntStream.rangeClosed(1, 10_000).boxed().collect(Collectors.toList());
+    List<Integer> list = IntStream.rangeClosed(1, 50_000).boxed().collect(Collectors.toList());
     Collections.shuffle(list);
     array = list.stream().mapToInt(Integer::intValue).toArray();
     compare = Arrays.copyOf(array, array.length);
@@ -40,6 +40,26 @@ class SortTest {
 
     //then
     assertThat(array).isEqualTo(compare);
-    log.info("Execution Time: {} ms", end - start);
+    loggingExecutionTime(start, end);
   }
+
+  @Test
+  @DisplayName("선택 정렬 테스트")
+  void selectionSortTest() {
+    //given when
+    long start = System.currentTimeMillis();
+    SelectionSort.sort(array);
+    long end = System.currentTimeMillis();
+
+    //then
+    assertThat(array).isEqualTo(compare);
+    loggingExecutionTime(start, end);
+  }
+
+  void loggingExecutionTime(long start, long end) {
+    String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
+    long executionTime = end - start;
+    log.info("{} Execution Time: {} ms", methodName, executionTime);
+  }
+
 }
