@@ -6,45 +6,42 @@ public class QuickSort {
     pivotSort(array, 0, array.length - 1);
   }
 
-  private static void pivotSort(int[] array, int lo, int hi) {
-    if (lo >= hi) {
-      return; // 정렬할 구간이 더 이상 없으면 재귀 종료
+  private static void pivotSort(int[] array, int start, int end) {
+    if (start >= end) {
+      // 이미 정렬이 완료되었으므로 return
+      return;
     }
 
-    // pivot 기준으로 배열을 나누고, 나눈 부분을 재귀적으로 정렬
-    int pivot = partition(array, lo, hi);
-    pivotSort(array, lo, pivot); // pivot 왼쪽부분 정렬
-    pivotSort(array, pivot + 1, hi); // pivot 오른쪽부분 정렬
+    int pivot = partition(array, start, end); // 배열을 분할하기 위한 pivot 설정
+    pivotSort(array, start, pivot); // pivot 기준 왼쪽 분할배열 정렬
+    pivotSort(array, pivot + 1, end); // pivot 기준 오른쪽 분할배열 정렬
   }
 
   private static int partition(int[] array, int left, int right) {
-    // lo, hi는 시작과 끝에서 출발하고, 탐색할 범위를 설정
-    int lo = left - 1;
-    int hi = right + 1;
+    int lo = left;
+    int hi = right;
 
-    // 배열의 중간 인덱스 값을 pivot 설정
-    int pivot = array[(left + right) / 2];
+    int pivot = array[(left + right) / 2]; // 중간값을 pivot으로 설정
 
-    while (true) {
-
-      // lo가 pivot보다 큰 값을 만날 때까지 증가
-      do {
+    // lo가 hi와 만날때까지 반복
+    while (lo <= hi) {
+      // array[lo]가 pivot보다 커질 때까지 증가
+      while (array[lo] < pivot) {
         lo++;
-      } while (array[lo] < pivot);
-
-      // hi가 pivot보다 작은 값을 만날 때까지 감소
-      do {
-        hi--;
-      } while (array[hi] > pivot);
-
-      // 만약 lo가 hi와 같거나 크다면 탐색 종료, hi를 반환
-      if (lo >= hi) {
-        return hi;
       }
 
-      // lo < hi인 경우, swap 진행
-      SortUtil.swap(array, lo, hi);
-    }
-  }
+      // array[hi]가 pivot보다 작을 때까지 감소
+      while (array[hi] > pivot) {
+        hi--;
+      }
 
+      if (lo <= hi) {
+        // 증가시킨 lo와 hi의 값을 swap
+        SortUtil.swap(array, lo, hi);
+        lo++;
+        hi--;
+      }
+    }
+    return lo - 1;  // 마지막으로 swap한 lo는 증가연산자가 적용되었으므로 -1을 진행
+  }
 }
