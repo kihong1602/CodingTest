@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.codingtest'
+version '1.0.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+}
+
+test {
+    useJUnitPlatform()
+}
