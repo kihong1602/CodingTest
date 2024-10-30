@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout charset="${charset-UTF-8}" pattern="${console-layout-pattern}"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+
+  <Properties>
+    <Property name="charset-UTF-8">UTF-8</Property>
+    <Property name="console-layout-pattern">%style{%d{yyyy/MM/dd HH:mm:ss,SSS}}{cyan} %highlight{[%-4p]}{FATAL=bg_red, ERROR=red,
+      INFO=green, DEBUG=blue} [%C] %style{[%t]}{yellow} :: %m%n
+    </Property>
+  </Properties>
+</Configuration>
