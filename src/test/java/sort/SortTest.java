@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,16 +18,23 @@ class SortTest {
 
   private static final Logger log = LogManager.getLogger(SortTest.class);
 
+  private static int[] original;
+  
   private int[] array;
 
   private int[] compare;
 
+  @BeforeAll
+  static void setup() {
+    List<Integer> list = IntStream.rangeClosed(1, 150_000).boxed().collect(Collectors.toList());
+    Collections.shuffle(list);
+    original = list.stream().mapToInt(Integer::intValue).toArray();
+  }
+
   @BeforeEach
   void init() {
-    List<Integer> list = IntStream.rangeClosed(1, 50_000).boxed().collect(Collectors.toList());
-    Collections.shuffle(list);
-    array = list.stream().mapToInt(Integer::intValue).toArray();
-    compare = Arrays.copyOf(array, array.length);
+    array = Arrays.copyOf(original, original.length);
+    compare = Arrays.copyOf(original, original.length);
     Arrays.sort(compare);
   }
 
@@ -75,6 +83,19 @@ class SortTest {
     //given when
     long start = System.currentTimeMillis();
     QuickSort.sort(array);
+    long end = System.currentTimeMillis();
+
+    //then
+    assertThat(array).isEqualTo(compare);
+    loggingExecutionTime(start, end);
+  }
+
+  @Test
+  @DisplayName("병합 정렬 테스트")
+  void mergeSortTest() {
+    //given when
+    long start = System.currentTimeMillis();
+    MergeSort.sort(array);
     long end = System.currentTimeMillis();
 
     //then
