@@ -69,6 +69,19 @@ class SortTest {
     loggingExecutionTime(start, end);
   }
 
+  @Test
+  @DisplayName("퀵 정렬 테스트")
+  void quickSortTest() {
+    //given when
+    long start = System.currentTimeMillis();
+    QuickSort.sort(array);
+    long end = System.currentTimeMillis();
+
+    //then
+    assertThat(array).isEqualTo(compare);
+    loggingExecutionTime(start, end);
+  }
+
   void loggingExecutionTime(long start, long end) {
     String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
     long executionTime = end - start;
