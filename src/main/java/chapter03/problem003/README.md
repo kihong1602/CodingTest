@@ -2,7 +2,7 @@
 
 > BOJ 11659 구간합 구하기 4
 > <br/>
-> (링크)[https://www.acmicpc.net/problem/11659]
+> [링크](https://www.acmicpc.net/problem/11659)
 
 ## 풀이
 
