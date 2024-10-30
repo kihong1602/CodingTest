@@ -11,15 +11,9 @@ public class SelectionSort {
         }
       }
       if (i != min) {
-        swap(array, i, min);
+        SortUtil.swap(array, i, min);
       }
     }
-  }
-
-  private static void swap(int[] array, int idx1, int idx2) {
-    int tmp = array[idx1];
-    array[idx1] = array[idx2];
-    array[idx2] = tmp;
   }
 
 }
