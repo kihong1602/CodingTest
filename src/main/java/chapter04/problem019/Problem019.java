@@ -52,14 +52,19 @@ public class Problem019 {
 
   private static int pivotSelect(int[] array, int left, int right) {
     int lo = left;
-    int hi = right;
-    int pivot = array[(left + right) / 2];
+    int hi = right - 1;
+
+    int pivotIndex = (left + right) / 2;
+    int pivot = array[pivotIndex];
+    swap(array, pivotIndex, right); // pivot을 오른쪽 끝으로 이동
 
     while (lo <= hi) {
-      while (array[lo] < pivot) {
+      //  IndexOutOfBound 방지를 위해 lo <= hi 조건문 추가
+      while (lo <= hi && array[lo] < pivot) {
         lo++;
       }
-      while (array[hi] > pivot) {
+
+      while (lo <= hi && array[hi] > pivot) {
         hi--;
       }
 
@@ -69,8 +74,11 @@ public class Problem019 {
         hi--;
       }
     }
+
+    swap(array, lo, right); // pivot을 기존 자리 (중앙)으로 이동
     return lo;
   }
+
 
   private static void swap(int[] array, int i, int j) {
     int tmp = array[i];
