@@ -116,6 +116,19 @@ class SortTest {
     loggingExecutionTime(start, end);
   }
 
+  @Test
+  @DisplayName("카운팅 정렬 테스트")
+  void countingSortTest() {
+    //given when
+    long start = System.currentTimeMillis();
+    CountingSort.sort(array, 150_000);
+    long end = System.currentTimeMillis();
+
+    //then
+    assertThat(array).isEqualTo(compare);
+    loggingExecutionTime(start, end);
+  }
+
   void loggingExecutionTime(long start, long end) {
     String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
     long executionTime = end - start;
