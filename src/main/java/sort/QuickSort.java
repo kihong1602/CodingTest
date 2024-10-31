@@ -13,25 +13,27 @@ public class QuickSort {
     }
 
     int pivot = partition(array, start, end); // 배열을 분할하기 위한 pivot 설정
-    pivotSort(array, start, pivot); // pivot 기준 왼쪽 분할배열 정렬
+    pivotSort(array, start, pivot - 1); // pivot 기준 왼쪽 분할배열 정렬
     pivotSort(array, pivot + 1, end); // pivot 기준 오른쪽 분할배열 정렬
   }
 
   private static int partition(int[] array, int left, int right) {
     int lo = left;
-    int hi = right;
+    int hi = right - 1;
+    int pivotIndex = (left + right) / 2;
+    int pivot = array[pivotIndex]; // 중간값을 pivot으로 설정
 
-    int pivot = array[(left + right) / 2]; // 중간값을 pivot으로 설정
+    SortUtil.swap(array, pivotIndex, right);  // pivot을 맨 오른쪽으로 이동
 
     // lo가 hi와 만날때까지 반복
     while (lo <= hi) {
       // array[lo]가 pivot보다 커질 때까지 증가
-      while (array[lo] < pivot) {
+      while (lo <= hi && array[lo] < pivot) {
         lo++;
       }
 
       // array[hi]가 pivot보다 작을 때까지 감소
-      while (array[hi] > pivot) {
+      while (lo <= hi && array[hi] > pivot) {
         hi--;
       }
 
@@ -42,6 +44,8 @@ public class QuickSort {
         hi--;
       }
     }
-    return lo - 1;  // 마지막으로 swap한 lo는 증가연산자가 적용되었으므로 -1을 진행
+
+    SortUtil.swap(array, lo, right); // pivot을 다시 중앙으로 이동
+    return lo; // pivot 최종 위치 return
   }
 }
