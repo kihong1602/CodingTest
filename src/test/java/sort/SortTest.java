@@ -2,6 +2,13 @@ package sort;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import algorithm.sort.BubbleSort;
+import algorithm.sort.CountingSort;
+import algorithm.sort.InsertionSort;
+import algorithm.sort.MergeSort;
+import algorithm.sort.QuickSort;
+import algorithm.sort.RadixSort;
+import algorithm.sort.SelectionSort;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
