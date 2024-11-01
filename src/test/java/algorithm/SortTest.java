@@ -1,5 +1,6 @@
-package sort;
+package algorithm;
 
+import static algorithm.TestUtils.loggingExecutionTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import algorithm.sort.BubbleSort;
@@ -14,8 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,10 +22,8 @@ import org.junit.jupiter.api.Test;
 
 class SortTest {
 
-  private static final Logger log = LogManager.getLogger(SortTest.class);
-
   private static int[] original;
-  
+
   private int[] array;
 
   private int[] compare;
@@ -134,12 +131,6 @@ class SortTest {
     //then
     assertThat(array).isEqualTo(compare);
     loggingExecutionTime(start, end);
-  }
-
-  void loggingExecutionTime(long start, long end) {
-    String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
-    long executionTime = end - start;
-    log.info("{} Execution Time: {} ms", methodName, executionTime);
   }
 
 }
