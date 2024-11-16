@@ -1,4 +1,4 @@
-package doit.chpater07.problem040;
+package doit.chapter07.problem040;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
